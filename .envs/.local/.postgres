@@ -1,0 +1,5 @@
+POSTGRES_USER=store_user
+POSTGRES_PASSWORD=store_pass
+PGDATA=/var/lib/postgresql/data/pgdata
+POSTGRES_PORT=5432
+POSTGRES_HOST=postgres

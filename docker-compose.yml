@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  rails:
+    build: 
+      context: .
+      dockerfile: ./docker/local/rails/Dockerfile
+    image: organizer_app:0.1.0
+    ports:
+     - 3000:3000
+    volumes:
+      - .:/app
+    env_file:
+      - .envs/.local/.postgres
+    depends_on:
+      - postgres
+
+  postgres:
+    restart: on-failure:3
+    image: postgres:13.2
+    volumes:
+      - db_organizer:/var/lib/postgresql/data
+    env_file:
+      - .envs/.local/.postgres
+
+volumes:
+  db_organizer:
