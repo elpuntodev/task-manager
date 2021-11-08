@@ -14,6 +14,30 @@ services:
       - .envs/.local/.postgres
     depends_on:
       - postgres
+      - mailcacher
+
+  postgres:
+    restart: on-failure:3
+    image: postgres:13.2
+    volumes:
+      - db_organizer:/var/lib/postgresql/data
+    env_file:
+      - .envs/.local/.postgres
+
+  mailcacher:
+    build: 
+      context: .
+      dockerfile: ./docker/local/rails/Dockerfile
+    command:
+      - mailcatcher
+      - --http-ip
+      - 0.0.0.0
+    image: organizer_app:0.1.0
+    ports:
+     - 1025:1025
+     - 1080:1080
+    volumes:
+      - .:/app
 
   postgres:
     restart: on-failure:3

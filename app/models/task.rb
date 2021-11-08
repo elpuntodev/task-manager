@@ -22,6 +22,7 @@ class Task < ApplicationRecord
   validate :due_date_cannot_be_in_the_past
 
   before_create :generate_code
+  after_create :send_email_to_participants
 
   accepts_nested_attributes_for :participanting_users, allow_destroy: true
 
@@ -34,4 +35,11 @@ class Task < ApplicationRecord
   def generate_code
     self.code = "#{owner_id}_#{Time.now.to_i.to_s(36)}_#{SecureRandom.hex(8)}"
   end
+
+  def send_email_to_participants
+    participants.each do |participant|
+      ParticipantMailer.with(task: self, user: participant).task_created.deliver!
+    end
+  end
+
 end
