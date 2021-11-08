@@ -3,6 +3,7 @@
 set -e
 
 rake db:create
+rails db:migrate
 
 if [ -f /app/tmp/pids/server.pid ]; then
     rm /app/tmp/pids/server.pid
