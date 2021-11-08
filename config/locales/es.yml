@@ -5,6 +5,9 @@ es:
       name: Nombre
       description: Description
     new_category: Nueva Categoria
+  tasks:
+    errors:
+      cannot_be_in_the_past: La fecha de expiración no puede ser una fecha del pasado
   activerecord:
     models:
       category:

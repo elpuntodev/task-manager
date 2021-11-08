@@ -13,3 +13,6 @@ en:
   common:
     back: Atras
   hello: Hello world
+  tasks:
+    errors:
+      cannot_be_in_the_past: La fecha de expiración no puede ser una fecha del pasado

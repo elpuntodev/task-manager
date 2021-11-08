@@ -12,4 +12,14 @@
 #
 class Task < ApplicationRecord
   belongs_to :category
+
+  validates :name, :description, presence: true
+  validates :name, uniqueness: { case_insensitive: false }
+  validate :due_date_cannot_be_in_the_past
+
+  def due_date_cannot_be_in_the_past
+    return if due_date.blank?
+    return if due_date >= Date.today
+    errors.add(:due_date, I18n.t('tasks.errors.cannot_be_in_the_past'))
+  end
 end
