@@ -12,7 +12,11 @@
 #
 class Task < ApplicationRecord
   belongs_to :category
-
+  belongs_to :owner, class_name: 'User'
+  has_many :participanting_users, class_name: 'User'
+  has_many :participants, through: :participanting_users, source: :user
+  
+  validates :participanting_users, presence: true
   validates :name, :description, presence: true
   validates :name, uniqueness: { case_insensitive: false }
   validate :due_date_cannot_be_in_the_past
