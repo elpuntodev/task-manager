@@ -32,7 +32,8 @@ gem 'hamlit'
 gem 'simple_form'
 gem 'annotate'
 gem 'rails-i18n'
-gem 'devise'
+gem 'devise' # Auth users
+gem 'cocoon' # Form helpers anidable See this video for install https://platzi.com/clases/1976-intro-ror/29931-creando-formularios-anidados/
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
