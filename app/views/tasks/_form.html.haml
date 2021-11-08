@@ -8,6 +8,8 @@
     = f.input :description
     = f.input :due_date
     = f.association :category
-
+    .participants
+      = simple_form_for :participanting_users do |g|
+        = render 'participanting_user_fields', f: g
   .form-actions
     = f.button :submit
