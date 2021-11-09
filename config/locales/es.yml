@@ -1,18 +1,22 @@
 ---
 es:
-  categories:
-    form:
-      name: Nombre
-      description: Description
-    new_category: Nueva Categoria
-  tasks:
-    errors:
-      cannot_be_in_the_past: La fecha de expiración no puede ser una fecha del pasado
   activerecord:
     models:
       category:
         one: Categoría
         others: Categorias
-  hello: Hello world
+  categories:
+    form:
+      description: Description
+      name: Nombre
+    new_category: Nueva Categoria
   common:
+    are_you_sure: Are you sure
     back: Atras
+    destroy: Destroy
+    edit: Edit
+    show: Show
+  hello: Hello world
+  tasks:
+    errors:
+      cannot_be_in_the_past: La fecha de expiración no puede ser una fecha del pasado
