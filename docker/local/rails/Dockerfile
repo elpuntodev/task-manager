@@ -14,7 +14,7 @@ RUN apt-get update -y && \
   curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
   apt-get install -y nodejs
 # Install yarn packages
-RUN yarn global add bootstrap jquery popper.js roboto-fontface
+RUN yarn add bootstrap jquery @popperjs/core roboto-fontface @nathanvda/cocoon @rails/webpacker
 
 # Add new user an change user
 RUN useradd -ms /bin/bash developer
