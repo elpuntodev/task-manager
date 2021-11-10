@@ -41,7 +41,7 @@ class Task < ApplicationRecord
 
   def send_email_to_participants
     participants.each do |participant|
-      ParticipantMailer.with(task: self, user: participant).new_task_email.deliver!
+      # ParticipantMailer.with(task: self, user: participant).new_task_email.deliver!
     end
   end
 
