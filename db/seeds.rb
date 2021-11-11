@@ -114,7 +114,7 @@ due_date: Date.today + 15.days,
 
 owner: owner,
 
-participanting_users: participants
+participating_users: participants
 
 )
 

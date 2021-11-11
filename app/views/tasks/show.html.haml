@@ -29,7 +29,7 @@
       .task-participants
         .task-participants-header
           .font-weight-bold.text-uppercase= 'Participantes'
-        - @task.participanting_users.includes(:user).each do |participant|
+        - @task.participating_users.includes(:user).each do |participant|
           .task-participant{ class: "task-participant--#{participant.role}" }
             = image_tag "https://robohash.org/#{participant.user.email}?size=60x60", title: participant.user.email
       = link_to t('common.edit'), edit_task_path(@task)

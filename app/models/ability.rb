@@ -32,6 +32,6 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
     can :manage, Task, owner_id: user.id
-    can :read, Task, participanting_users: { user_id: user.id }
+    can :read, Task, participating_users: { user_id: user.id }
   end
 end

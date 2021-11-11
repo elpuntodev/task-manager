@@ -43,6 +43,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
   gem 'pry-doc'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -57,6 +59,12 @@ group :development do
   gem 'spring'
   gem 'i18n-tasks', '~> 0.9.35'
   gem 'mailcatcher'
+end
+
+group :test do
+  gem 'database_cleaner-mongoid'
+  gem 'faker'
+  gem 'capybara'
 end
 
 group :production do

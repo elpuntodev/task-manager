@@ -18,11 +18,11 @@
       %br
       %h3
         .uppercased-font{ style: 'display: inline-block;' } Participantes
-        = link_to_add_association f, :participanting_users, class: 'btn btn-info float-right', 'data-association-insertion-node' => '.participants .participants-container', 'data-turbolinks' => false do
+        = link_to_add_association f, :participating_users, class: 'btn btn-info float-right', 'data-association-insertion-node' => '.participants .participants-container', 'data-turbolinks' => false do
           Agregar un participante
           .fa.fa-plus-circle
       .participants
-        = f.simple_fields_for :participanting_users do |g|
+        = f.simple_fields_for :participating_users do |g|
           = render 'participating_user_fields', f: g
         .participants-container
     .form-actions

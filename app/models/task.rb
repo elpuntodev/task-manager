@@ -9,10 +9,10 @@ class Task
 
   belongs_to :category
   belongs_to :owner, class_name: 'User'
-  has_many :participanting_users, class_name: 'Participant'
+  has_many :participating_users, class_name: 'Participant'
   has_many :notes
 
-  validates :participanting_users, presence: true
+  validates :participating_users, presence: true
   validates :name, :description, presence: true
   validates :name, uniqueness: { case_insensitive: false }
   validate :due_date_cannot_be_in_the_past
@@ -20,7 +20,7 @@ class Task
   before_create :generate_code
   after_create :send_email_to_participants
 
-  accepts_nested_attributes_for :participanting_users, allow_destroy: true
+  accepts_nested_attributes_for :participating_users, allow_destroy: true
 
   def participants
     participating_users.include(:user).map(&:user)
