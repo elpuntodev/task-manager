@@ -41,7 +41,7 @@ RSpec.describe Task, type: :model do
       let(:category) { create(:category) }
       let(:participant_1) { build(:participant, :responsible) }
       let(:participant_2) { build(:participant, :follower) }
-      subject do
+      subject(:task) do # create var task as the subject
         described_class.new(
           name: 'Test Task',
           description: 'Test description',
@@ -51,7 +51,21 @@ RSpec.describe Task, type: :model do
           participating_users: [participant_1, participant_2]
         )
       end
+
       it { is_expected.to be_valid }
+      context 'after save' do
+        before(:each) { task.save }
+
+        it { is_expected.to be_persisted }
+
+        it 'has a computed code' do
+          expect(task.code).to be_present
+        end
+      end
+      context 'with due_date in the past' do
+        subject { task.tap { |t| t.due_date = Date.today - 1.day } }
+        it { is_expected.to be_invalid }
+      end
     end
   end
 end
