@@ -173,6 +173,16 @@ GEM
     minitest (5.14.4)
     mongo (2.16.0)
       bson (>= 4.8.2, < 5.0.0)
+    mongoid-compatibility (0.5.1)
+      activesupport
+      mongoid (>= 2.0)
+    mongoid-rspec (4.1.0)
+      activesupport (>= 3.0.0)
+      mongoid (>= 3.1)
+      mongoid-compatibility (>= 0.5.1)
+      rspec-core (~> 3.3)
+      rspec-expectations (~> 3.3)
+      rspec-mocks (~> 3.3)
     msgpack (1.4.2)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
@@ -351,6 +361,7 @@ DEPENDENCIES
   listen (~> 3.3)
   mailcatcher
   mongoid!
+  mongoid-rspec
   pry
   pry-doc
   puma (~> 5.0)
