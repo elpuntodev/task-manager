@@ -6,7 +6,8 @@ ruby '3.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
+# gem 'pg', '~> 1.1'
+gem 'mongoid', github: 'mongodb/mongoid', branch: 'master'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -30,7 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'hamlit'
 gem 'simple_form'
-gem 'annotate'
+# gem 'annotate'
 gem 'rails-i18n'
 gem 'devise' # Auth users
 gem 'cocoon' # Form helpers anidable See this video for install https://platzi.com/clases/1976-intro-ror/29931-creando-formularios-anidados/

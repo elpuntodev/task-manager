@@ -10,19 +10,17 @@ services:
      - 3000:3000
     volumes:
       - .:/app
-    env_file:
-      - .envs/.local/.postgres
     depends_on:
-      - postgres
       - mailcacher
+      - mongodb
 
-  postgres:
-    restart: on-failure:3
-    image: postgres:13.2
+  mongodb:
+    image : mongo:4.2.7
+    environment:
+      - PUID=1000
+      - PGID=1000
     volumes:
-      - db_organizer:/var/lib/postgresql/data
-    env_file:
-      - .envs/.local/.postgres
+      - mongo_organizer:/data/db
 
   mailcacher:
     build: 
@@ -39,13 +37,5 @@ services:
     volumes:
       - .:/app
 
-  postgres:
-    restart: on-failure:3
-    image: postgres:13.2
-    volumes:
-      - db_organizer:/var/lib/postgresql/data
-    env_file:
-      - .envs/.local/.postgres
-
 volumes:
-  db_organizer:
+  mongo_organizer:
