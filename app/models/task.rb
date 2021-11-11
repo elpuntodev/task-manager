@@ -1,22 +1,15 @@
-# == Schema Information
-#
-# Table name: tasks
-#
-#  id          :bigint           not null, primary key
-#  name        :string
-#  description :text
-#  due_date    :date
-#  category_id :bigint           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  owner_id    :bigint           not null
-#  code        :string
-#
-class Task < ApplicationRecord
+class Task
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :name, type: String
+  field :description, type: String
+  field :due_date, type: Date
+  field :code, type: String
+
   belongs_to :category
   belongs_to :owner, class_name: 'User'
   has_many :participanting_users, class_name: 'Participant'
-  has_many :participants, through: :participanting_users, source: :user
   has_many :notes
 
   validates :participanting_users, presence: true
@@ -29,6 +22,10 @@ class Task < ApplicationRecord
 
   accepts_nested_attributes_for :participanting_users, allow_destroy: true
 
+  def participants
+    participating_users.include(:user).map(&:user)
+  end
+
   def due_date_cannot_be_in_the_past
     return if due_date.blank?
     return if due_date >= Date.today
@@ -40,8 +37,9 @@ class Task < ApplicationRecord
   end
 
   def send_email_to_participants
+    return
     participants.each do |participant|
-      # ParticipantMailer.with(task: self, user: participant).new_task_email.deliver!
+      ParticipantMailer.with(task: self, user: participant).new_task_email.deliver!
     end
   end
 
