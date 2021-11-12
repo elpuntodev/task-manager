@@ -10,7 +10,6 @@ import "channels"
 
 import "bootstrap"
 import "roboto-fontface"
-import 'cocoon'
 import "@nathanvda/cocoon"
 
 Rails.start()
