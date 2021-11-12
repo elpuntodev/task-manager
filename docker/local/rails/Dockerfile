@@ -1,5 +1,9 @@
 FROM ruby:3.0.0
 
+# Download and descompress ChromeDriver
+ADD https://chromedriver.storage.googleapis.com/80.0.3987.106/chromedriver_linux64.zip /tmp/chromedriver.zip
+RUN unzip /tmp/chromedriver.zip -d /usr/bin
+
 # Pre install Yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
   bash -c "echo 'deb https://dl.yarnpkg.com/debian/ stable main' >> /etc/apt/sources.list"
@@ -13,12 +17,9 @@ RUN apt-get update -y && \
   # Install Node
   curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
   apt-get install -y nodejs
+
 # Install yarn packages
 RUN yarn add bootstrap jquery @popperjs/core roboto-fontface @nathanvda/cocoon @rails/webpacker
-
-# Add new user an change user
-RUN useradd -ms /bin/bash developer
-USER developer
 
 # Create and change to work directory
 WORKDIR /app

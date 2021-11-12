@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'factory_bot_rails'
 require 'database_cleaner/mongoid'
 require 'capybara/rails'
+require "selenium-webdriver"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -25,6 +26,22 @@ require 'capybara/rails'
 #
 # Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
+
+Capybara.register_driver :chrome_headless do |app|
+  chrome_capabilities = ::Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { 'args': %w[no-sandbox headless disable-gpu disable-dev-shm-usage window-size=1400,1400] })
+
+  if ENV['HUB_URL']
+    Capybara::Selenium::Driver.new(app,
+                                   browser: :remote,
+                                   url: ENV['HUB_URL'],
+                                   desired_capabilities: chrome_capabilities)
+  else
+    Capybara::Selenium::Driver.new(app,
+                                   browser: :chrome,
+                                   desired_capabilities: chrome_capabilities)
+  end
+end
+
 RSpec.configure do |config|
   # Remove this line to enable support for ActiveRecord
   config.use_active_record = false
@@ -40,6 +57,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Mongoid::Matchers, type: :model
 
   config.before(:suite) do
@@ -54,6 +72,17 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :chrome_headless
+
+    Capybara.app_host = "http://#{IPSocket.getaddress(Socket.gethostname)}:3000"
+    Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
+    Capybara.server_port = 3000
+  end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

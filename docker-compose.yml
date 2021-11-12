@@ -13,6 +13,9 @@ services:
     depends_on:
       - mailcacher
       - mongodb
+      - web-browser
+    environment:
+      HUB_URL: http://web-browser:4444/wd/hub
 
   mongodb:
     image : mongo:4.2.7
@@ -37,5 +40,14 @@ services:
     volumes:
       - .:/app
 
+  web-browser:
+    image: selenium/standalone-chrome:3.141.59-zirconium
+    command:
+      - /opt/bin/entry_point.sh
+      - --verbose
+    volumes:
+      - browser_data:/dev/shm
+
 volumes:
   mongo_organizer:
+  browser_data:

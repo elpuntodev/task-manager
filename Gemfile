@@ -59,12 +59,13 @@ group :development do
   gem 'spring'
   gem 'i18n-tasks', '~> 0.9.35'
   gem 'mailcatcher'
+  gem 'selenium-webdriver'
 end
 
 group :test do
   gem 'database_cleaner-mongoid'
   gem 'faker'
-  gem 'capybara'
+  gem 'capybara', '>= 2.15'
   gem 'mongoid-rspec'
   gem 'rails-controller-testing'
 end
