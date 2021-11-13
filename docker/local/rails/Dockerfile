@@ -19,7 +19,7 @@ RUN apt-get update -y && \
   apt-get install -y nodejs
 
 # Install yarn packages
-RUN yarn add bootstrap jquery @popperjs/core roboto-fontface @nathanvda/cocoon @rails/webpacker
+RUN yarn add bootstrap jquery @popperjs/core roboto-fontface @nathanvda/cocoon @rails/webpacker selectize
 
 # Create and change to work directory
 WORKDIR /app

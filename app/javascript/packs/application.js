@@ -11,9 +11,11 @@ import "channels"
 import "bootstrap"
 import "roboto-fontface"
 import "@nathanvda/cocoon"
+import "selectize"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
 import "../src/stylesheets/application"
+import "../src/javascripts/main"
