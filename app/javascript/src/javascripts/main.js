@@ -8,6 +8,13 @@ window.PLATZI = {
       setup() {
         console.log("Setup in the index page");
       }
+    },
+    form: {
+      setup() {
+        $('.participants').on('cocoon:before-insert', function(e, insertedItem, originalItem){
+          PLATZI.misc.selectizeByScope(insertedItem);
+        })
+      }
     } 
   },
   misc: {
