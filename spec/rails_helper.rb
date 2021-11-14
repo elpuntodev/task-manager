@@ -9,6 +9,7 @@ require 'factory_bot_rails'
 require 'database_cleaner/mongoid'
 require 'capybara/rails'
 require "selenium-webdriver"
+require 'sucker_punch/testing/inline'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

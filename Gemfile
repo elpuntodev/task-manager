@@ -37,6 +37,7 @@ gem 'devise' # Auth users
 gem 'cocoon' # Form helpers anidable See this video for install https://platzi.com/clases/1976-intro-ror/29931-creando-formularios-anidados/
 gem 'cancancan' # Permissions
 gem 'font-awesome-sass', '~> 5.12.0'
+gem 'sucker_punch' # For jobs
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -38,7 +38,7 @@ class Task
   end
 
   def send_email_to_participants
-    Tasks::SendEmail.new.call(self)
+    Tasks::SendEmailJob.perform_async(id.to_s)
   end
 
 end
