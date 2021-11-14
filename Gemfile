@@ -38,6 +38,7 @@ gem 'cocoon' # Form helpers anidable See this video for install https://platzi.c
 gem 'cancancan' # Permissions
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'sucker_punch' # For jobs
+gem 'aasm' # States machine
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

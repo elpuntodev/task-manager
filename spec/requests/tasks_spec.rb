@@ -45,4 +45,15 @@ RSpec.describe "Tasks", type: :request do
       expect(response.body).to include('Task was successfully created.')
     end
   end
+  describe 'PATCH /tasks/:id/trigger' do
+    subject(:task) { build(:task_with_participants, owner: user, participants_count: 3) }
+    let(:event) { 'start' }
+    it 'updates the state' do
+      task.save
+
+      patch trigger_task_path(task, params: { event: event })
+
+      expect(task.reload.status).to eq('in_progress')
+    end
+  end
 end

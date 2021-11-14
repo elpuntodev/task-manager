@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Tasks::SendEmail do
-  let(:task) { create(:task_with_participants, participants_count: 3) }
+  let(:task) { build(:task_with_participants, participants_count: 3) }
 
   subject(:service) { described_class.new } # described_class is the class we are testing(Tasks::SendEmail)
 
