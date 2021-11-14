@@ -10,6 +10,7 @@ class Task
   belongs_to :category
   belongs_to :owner, class_name: 'User'
   has_many :participating_users, class_name: 'Participant'
+  # has_many :participants, through: :participating_users, source: :user # Using ActiveRecord
   has_many :notes
 
   validates :participating_users, presence: true
@@ -23,7 +24,7 @@ class Task
   accepts_nested_attributes_for :participating_users, allow_destroy: true
 
   def participants
-    participating_users.include(:user).map(&:user)
+    participating_users.includes(:user).map(&:user)
   end
 
   def due_date_cannot_be_in_the_past
@@ -37,10 +38,7 @@ class Task
   end
 
   def send_email_to_participants
-    return
-    participants.each do |participant|
-      ParticipantMailer.with(task: self, user: participant).new_task_email.deliver!
-    end
+    Tasks::SendEmail.new.call(self)
   end
 
 end
