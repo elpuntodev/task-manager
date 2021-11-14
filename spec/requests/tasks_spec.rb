@@ -51,7 +51,7 @@ RSpec.describe "Tasks", type: :request do
     it 'updates the state' do
       task.save
 
-      patch trigger_task_path(task, params: { event: event })
+      patch trigger_task_path(task, params: { event: event }, format: :js)
 
       expect(task.reload.status).to eq('in_progress')
     end
